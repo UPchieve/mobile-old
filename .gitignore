@@ -13,5 +13,6 @@ platforms/android/CordovaLib/gen
 platforms/android/CordovaLib/local.properties
 
 platforms/ios/build/
+platforms/ios/www/
 platforms/ios/cordova/console.log
 *.xcuserdatad
