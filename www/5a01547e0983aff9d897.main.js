@@ -30230,7 +30230,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data() {
+  data: function data() {
     // let error;
     // if (this.$route.query['401'] === 'true'){
     //  error = 'Your session has expired. Please login again'
@@ -30243,8 +30243,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // error: error
     };
   },
+
   methods: {
-    submit() {
+    submit: function submit() {
       __WEBPACK_IMPORTED_MODULE_0__services_AuthService_js__["a" /* default */].login(this, {
         email: this.credentials.email,
         password: this.credentials.password
