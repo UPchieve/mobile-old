@@ -4,6 +4,9 @@ import VueResource from 'vue-resource'
 //const AUTH_ROOT = `${process.env.SERVER_ROOT}/auth`,
 //    API_ROOT = `${process.env.SERVER_ROOT}/api`
 
+Vue.use(VueResource);
+Vue.http.options.emulateJSON = true;
+
 const AUTH_ROOT = "http://localhost:3000/auth"
 
 export default {
@@ -16,15 +19,13 @@ export default {
 
   // Server route defintions
   login(context, data){
-    Vue.use(VueResource);
-    Vue.http.options.emulateJSON = true;
     return Vue.http.post(`${AUTH_ROOT}/login`, data).then(this._successHandler, this._errorHandler)
   },
   logout(context){
     return context.$http.get(`${AUTH_ROOT}/logout`).then(this._successHandler, this._errorHandler)
   },
   checkCode(context, data){
-    return context.$http.post(`${AUTH_ROOT}/register/check`, data).then(this._successHandler, this._errorHandler)
+    return Vue.http.post(`${AUTH_ROOT}/register/check`, data).then(this._successHandler, this._errorHandler)
   },
   register(context, data){
     return context.$http.post(`${AUTH_ROOT}/register`, data).then(this._successHandler, this._errorHandler)

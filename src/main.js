@@ -22,7 +22,7 @@ import Framework7ThemeColors from 'framework7/dist/css/framework7.ios.colors.min
 import AppStyles from './assets/sass/main.scss'
 
 // Import Routes
-import Routes from './routes.js'
+import routes from './routes'
 
 // Import App Component
 import App from './components/main.vue'
@@ -39,7 +39,7 @@ new Vue({
     root: '#app',
     /* Uncomment to enable Material theme: */
     // material: true,
-    routes: Routes
+    routes: routes
   },
   // Register App Component
   components: {

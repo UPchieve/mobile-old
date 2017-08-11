@@ -1,6 +1,6 @@
 import Validator from 'validator';
 
-// import {router} from '../router'
+import {router} from '../routes'
 
 import NetworkService from './NetworkService'
 
@@ -26,18 +26,16 @@ export default {
         throw new Error('No user returned from auth service');
       }
 
-      // this.storeUser(data.user);
+      this.storeUser(data.user);
 
       if(redirect) {
-        // router.push(redirect)
-        alert("Success!!")
-        // this.$f7.views.main.router.loadPage(redirect);
+        context.$f7.mainView.router.loadPage(redirect);
       }
     }, (res) => {
       context.error = 'Could not login';
       console.log(res);
     })
-  }/*,
+  },
 
   register(context, creds, redirect){
     return NetworkService.register(context, creds).then((res) => {
@@ -132,5 +130,5 @@ export default {
     }).catch((err) => {
       console.log(err);
     })
-  }*/
+  }
 };

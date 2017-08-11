@@ -4,7 +4,7 @@ import NetworkService from './NetworkService'
 import AuthService from './AuthService'
 import OnboardingService from './OnboardingService'
 
-import {router} from '../router'
+import {router} from '../routes'
 
 export default {
   getAuth(){

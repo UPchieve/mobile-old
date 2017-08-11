@@ -27,8 +27,9 @@
                 <f7-input name="password" type="password" placeholder="Password" required v-model="credentials.password"></f7-input>
               </f7-list-item>
             </f7-list>
-				    <f7-list>
+		    <f7-list>
               <f7-list-button title="Sign In" @click="submit"></f7-list-button>
+              <f7-list-button title="Sign Up" link="/signup/"></f7-list-button>
             </f7-list>
 					</f7-page>
 				</f7-pages>
@@ -51,33 +52,6 @@
 			</f7-view>
 		</f7-popup>
 		
-		<!-- Login Screen -->
-		<f7-login-screen id="login-screen">
-			<f7-view>
-				<f7-pages>
-					<f7-page login-screen>
-						<f7-login-screen-title>Login</f7-login-screen-title>
-						<f7-list form>
-							<f7-list-item>
-								<f7-label>Username</f7-label>
-								<f7-input name="username" placeholder="Username" type="text"></f7-input>
-							</f7-list-item>
-							<f7-list-item>
-								<f7-label>Password</f7-label>
-								<f7-input name="password" type="password" placeholder="Password"></f7-input>
-							</f7-list-item>
-						</f7-list>
-						<f7-list>
-							<f7-list-button title="Sign In" @click="submit"></f7-list-button>
-							<f7-list-label>
-								<p>Click Sign In to close Login Screen</p>
-							</f7-list-label>
-						</f7-list>
-					</f7-page>
-				</f7-pages>
-			</f7-view>
-		</f7-login-screen>
-	
 	</div>
 </template>
 
@@ -85,27 +59,27 @@
     import AuthService from '../services/AuthService.js'
 
 	export default {
-    data() {
-      // let error;
-      // if (this.$route.query['401'] === 'true'){
-      //  error = 'Your session has expired. Please login again'
-      //}
-      return {
-        credentials: {
-          email: '',
-          password: ''
-        },
-        // error: error
-      }
-    },
-    methods: {
-      submit() {
-        AuthService.login(this, {
-          email: this.credentials.email,
-          password: this.credentials.password
-        }, '/home/')
-        // alert(this.credentials.email + " " + this.credentials.password)
-      }
+	    data() {
+	      let error;
+	      // if (this.$route.query['401'] === 'true'){
+	      //  error = 'Your session has expired. Please login again'
+	      //}
+	      return {
+	        credentials: {
+	          email: '',
+	          password: ''
+	        },
+	        error: error
+	      }
+	    },
+	    methods: {
+	      submit() {
+	        AuthService.login(this, {
+	          email: this.credentials.email,
+	          password: this.credentials.password
+	        }, '/dashboard/')
+	        // alert(this.credentials.email + " " + this.credentials.password)
+	      }
+	    }
     }
-  }
 </script>
