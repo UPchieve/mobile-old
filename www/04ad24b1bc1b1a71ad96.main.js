@@ -15273,13 +15273,13 @@ var Component = __webpack_require__(/*! ../../../~/vue-loader/lib/component-norm
   /* script */
   __webpack_require__(/*! !babel-loader!../../../~/vue-loader/lib/selector?type=script&index=0!./CodeForm.vue */ 155),
   /* template */
-  __webpack_require__(/*! !../../../~/vue-loader/lib/template-compiler/index?{"id":"data-v-31a603a8"}!../../../~/vue-loader/lib/selector?type=template&index=0!./CodeForm.vue */ 217),
+  __webpack_require__(/*! !../../../~/vue-loader/lib/template-compiler/index?{"id":"data-v-7751cc87"}!../../../~/vue-loader/lib/selector?type=template&index=0!./CodeForm.vue */ 219),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/david/Downloads/mobile/src/components/Registration/CodeForm.vue"
+Component.options.__file = "/Users/david/Downloads/mobile_test/src/components/Registration/CodeForm.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] CodeForm.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -15290,9 +15290,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-31a603a8", Component.options)
+    hotAPI.createRecord("data-v-7751cc87", Component.options)
   } else {
-    hotAPI.reload("data-v-31a603a8", Component.options)
+    hotAPI.reload("data-v-7751cc87", Component.options)
   }
 })()}
 
@@ -15312,13 +15312,13 @@ var Component = __webpack_require__(/*! ../../../~/vue-loader/lib/component-norm
   /* script */
   __webpack_require__(/*! !babel-loader!../../../~/vue-loader/lib/selector?type=script&index=0!./SignupForm.vue */ 156),
   /* template */
-  __webpack_require__(/*! !../../../~/vue-loader/lib/template-compiler/index?{"id":"data-v-ab3dcfda"}!../../../~/vue-loader/lib/selector?type=template&index=0!./SignupForm.vue */ 219),
+  __webpack_require__(/*! !../../../~/vue-loader/lib/template-compiler/index?{"id":"data-v-343e2532"}!../../../~/vue-loader/lib/selector?type=template&index=0!./SignupForm.vue */ 216),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/david/Downloads/mobile/src/components/Registration/SignupForm.vue"
+Component.options.__file = "/Users/david/Downloads/mobile_test/src/components/Registration/SignupForm.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] SignupForm.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -15329,9 +15329,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-ab3dcfda", Component.options)
+    hotAPI.createRecord("data-v-343e2532", Component.options)
   } else {
-    hotAPI.reload("data-v-ab3dcfda", Component.options)
+    hotAPI.reload("data-v-343e2532", Component.options)
   }
 })()}
 
@@ -48289,13 +48289,13 @@ var Component = __webpack_require__(/*! ../../~/vue-loader/lib/component-normali
   /* script */
   __webpack_require__(/*! !babel-loader!../../~/vue-loader/lib/selector?type=script&index=0!./main.vue */ 157),
   /* template */
-  __webpack_require__(/*! !../../~/vue-loader/lib/template-compiler/index?{"id":"data-v-3015a908"}!../../~/vue-loader/lib/selector?type=template&index=0!./main.vue */ 216),
+  __webpack_require__(/*! !../../~/vue-loader/lib/template-compiler/index?{"id":"data-v-8c232b6e"}!../../~/vue-loader/lib/selector?type=template&index=0!./main.vue */ 220),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/david/Downloads/mobile/src/components/main.vue"
+Component.options.__file = "/Users/david/Downloads/mobile_test/src/components/main.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] main.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -48306,9 +48306,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3015a908", Component.options)
+    hotAPI.createRecord("data-v-8c232b6e", Component.options)
   } else {
-    hotAPI.reload("data-v-3015a908", Component.options)
+    hotAPI.reload("data-v-8c232b6e", Component.options)
   }
 })()}
 
@@ -53206,13 +53206,13 @@ var Component = __webpack_require__(/*! ../../~/vue-loader/lib/component-normali
   /* script */
   __webpack_require__(/*! !babel-loader!../../~/vue-loader/lib/selector?type=script&index=0!./Dashboard.vue */ 152),
   /* template */
-  __webpack_require__(/*! !../../~/vue-loader/lib/template-compiler/index?{"id":"data-v-2a759835"}!../../~/vue-loader/lib/selector?type=template&index=0!./Dashboard.vue */ 215),
+  __webpack_require__(/*! !../../~/vue-loader/lib/template-compiler/index?{"id":"data-v-644f10d8"}!../../~/vue-loader/lib/selector?type=template&index=0!./Dashboard.vue */ 218),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/david/Downloads/mobile/src/components/Dashboard.vue"
+Component.options.__file = "/Users/david/Downloads/mobile_test/src/components/Dashboard.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Dashboard.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -53223,9 +53223,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2a759835", Component.options)
+    hotAPI.createRecord("data-v-644f10d8", Component.options)
   } else {
-    hotAPI.reload("data-v-2a759835", Component.options)
+    hotAPI.reload("data-v-644f10d8", Component.options)
   }
 })()}
 
@@ -53245,13 +53245,13 @@ var Component = __webpack_require__(/*! ../../~/vue-loader/lib/component-normali
   /* script */
   __webpack_require__(/*! !babel-loader!../../~/vue-loader/lib/selector?type=script&index=0!./LoginForm.vue */ 153),
   /* template */
-  __webpack_require__(/*! !../../~/vue-loader/lib/template-compiler/index?{"id":"data-v-3910fcee"}!../../~/vue-loader/lib/selector?type=template&index=0!./LoginForm.vue */ 218),
+  __webpack_require__(/*! !../../~/vue-loader/lib/template-compiler/index?{"id":"data-v-47184766"}!../../~/vue-loader/lib/selector?type=template&index=0!./LoginForm.vue */ 217),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/david/Downloads/mobile/src/components/LoginForm.vue"
+Component.options.__file = "/Users/david/Downloads/mobile_test/src/components/LoginForm.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] LoginForm.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -53262,9 +53262,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3910fcee", Component.options)
+    hotAPI.createRecord("data-v-47184766", Component.options)
   } else {
-    hotAPI.reload("data-v-3910fcee", Component.options)
+    hotAPI.reload("data-v-47184766", Component.options)
   }
 })()}
 
@@ -53284,13 +53284,13 @@ var Component = __webpack_require__(/*! ../../~/vue-loader/lib/component-normali
   /* script */
   __webpack_require__(/*! !babel-loader!../../~/vue-loader/lib/selector?type=script&index=0!./Registration.vue */ 154),
   /* template */
-  __webpack_require__(/*! !../../~/vue-loader/lib/template-compiler/index?{"id":"data-v-e31fadb0"}!../../~/vue-loader/lib/selector?type=template&index=0!./Registration.vue */ 220),
+  __webpack_require__(/*! !../../~/vue-loader/lib/template-compiler/index?{"id":"data-v-054fcd2e"}!../../~/vue-loader/lib/selector?type=template&index=0!./Registration.vue */ 215),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/david/Downloads/mobile/src/components/Registration.vue"
+Component.options.__file = "/Users/david/Downloads/mobile_test/src/components/Registration.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Registration.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -53301,9 +53301,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-e31fadb0", Component.options)
+    hotAPI.createRecord("data-v-054fcd2e", Component.options)
   } else {
-    hotAPI.reload("data-v-e31fadb0", Component.options)
+    hotAPI.reload("data-v-054fcd2e", Component.options)
   }
 })()}
 
@@ -53314,8 +53314,93 @@ module.exports = Component.exports
 /* 215 */
 /* no static exports found */
 /* all exports used */
+/*!************************************************************************************************************************************************************!*\
+  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-054fcd2e"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/components/Registration.vue ***!
+  \************************************************************************************************************************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return (!_vm.validRegistrationCode) ? _c('code-form') : _c('signup-form')
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-054fcd2e", module.exports)
+  }
+}
+
+/***/ }),
+/* 216 */
+/* no static exports found */
+/* all exports used */
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-343e2532"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/components/Registration/SignupForm.vue ***!
+  \***********************************************************************************************************************************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('f7-page', [_c('f7-navbar', {
+    attrs: {
+      "title": "Sign Up",
+      "back-link": "Back",
+      "sliding": ""
+    }
+  }), _vm._v(" "), _c('f7-list', [_c('f7-list-item', [_c('f7-label', [_vm._v("E-mail")]), _vm._v(" "), _c('f7-input', {
+    staticClass: "form-control",
+    attrs: {
+      "name": "email",
+      "type": "text",
+      "placeholder": "E-mail Address",
+      "required": "",
+      "autofocus": ""
+    },
+    model: {
+      value: (_vm.credentials.email),
+      callback: function($$v) {
+        _vm.credentials.email = $$v
+      },
+      expression: "credentials.email"
+    }
+  })], 1), _vm._v(" "), _c('f7-list-item', [_c('f7-label', [_vm._v("Password")]), _vm._v(" "), _c('f7-input', {
+    staticClass: "form-control",
+    attrs: {
+      "name": "email",
+      "type": "password",
+      "placeholder": "Password",
+      "required": "",
+      "autofocus": ""
+    },
+    model: {
+      value: (_vm.credentials.password),
+      callback: function($$v) {
+        _vm.credentials.password = $$v
+      },
+      expression: "credentials.password"
+    }
+  })], 1), _vm._v(" "), _c('f7-list', [_c('f7-list-button', {
+    attrs: {
+      "title": "Create Account"
+    },
+    on: {
+      "click": _vm.submit
+    }
+  })], 1)], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-343e2532", module.exports)
+  }
+}
+
+/***/ }),
+/* 217 */
+/* no static exports found */
+/* all exports used */
 /*!*********************************************************************************************************************************************************!*\
-  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-2a759835"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/components/Dashboard.vue ***!
+  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-47184766"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/components/LoginForm.vue ***!
   \*********************************************************************************************************************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -53332,16 +53417,91 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-2a759835", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-47184766", module.exports)
   }
 }
 
 /***/ }),
-/* 216 */
+/* 218 */
+/* no static exports found */
+/* all exports used */
+/*!*********************************************************************************************************************************************************!*\
+  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-644f10d8"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/components/Dashboard.vue ***!
+  \*********************************************************************************************************************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('f7-page', [_c('f7-navbar', {
+    attrs: {
+      "title": "Dashboard",
+      "back-link": "Back",
+      "sliding": ""
+    }
+  })], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-644f10d8", module.exports)
+  }
+}
+
+/***/ }),
+/* 219 */
+/* no static exports found */
+/* all exports used */
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-7751cc87"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/components/Registration/CodeForm.vue ***!
+  \*********************************************************************************************************************************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('f7-page', [_c('f7-navbar', {
+    attrs: {
+      "title": "Sign Up",
+      "back-link": "Back",
+      "sliding": ""
+    }
+  }), _vm._v(" "), _c('f7-list', [_c('f7-list-item', [_c('f7-label', [_vm._v("Code")]), _vm._v(" "), _c('f7-input', {
+    staticClass: "form-control",
+    attrs: {
+      "name": "regcode",
+      "type": "text",
+      "placeholder": "Registration Code",
+      "required": "",
+      "autofocus": ""
+    },
+    model: {
+      value: (_vm.registrationCode),
+      callback: function($$v) {
+        _vm.registrationCode = $$v
+      },
+      expression: "registrationCode"
+    }
+  })], 1), _vm._v(" "), _c('f7-list', [_c('f7-list-button', {
+    attrs: {
+      "title": "Continue"
+    },
+    on: {
+      "click": _vm.submit
+    }
+  })], 1)], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-7751cc87", module.exports)
+  }
+}
+
+/***/ }),
+/* 220 */
 /* no static exports found */
 /* all exports used */
 /*!****************************************************************************************************************************************************!*\
-  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-3015a908"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/components/main.vue ***!
+  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-8c232b6e"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/components/main.vue ***!
   \****************************************************************************************************************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -53424,167 +53584,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-3015a908", module.exports)
-  }
-}
-
-/***/ }),
-/* 217 */
-/* no static exports found */
-/* all exports used */
-/*!*********************************************************************************************************************************************************************!*\
-  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-31a603a8"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/components/Registration/CodeForm.vue ***!
-  \*********************************************************************************************************************************************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('f7-page', [_c('f7-navbar', {
-    attrs: {
-      "title": "Sign Up",
-      "back-link": "Back",
-      "sliding": ""
-    }
-  }), _vm._v(" "), _c('f7-list', [_c('f7-list-item', [_c('f7-label', [_vm._v("Code")]), _vm._v(" "), _c('f7-input', {
-    staticClass: "form-control",
-    attrs: {
-      "name": "regcode",
-      "type": "text",
-      "placeholder": "Registration Code",
-      "required": "",
-      "autofocus": ""
-    },
-    model: {
-      value: (_vm.registrationCode),
-      callback: function($$v) {
-        _vm.registrationCode = $$v
-      },
-      expression: "registrationCode"
-    }
-  })], 1), _vm._v(" "), _c('f7-list', [_c('f7-list-button', {
-    attrs: {
-      "title": "Continue"
-    },
-    on: {
-      "click": _vm.submit
-    }
-  })], 1)], 1)], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-31a603a8", module.exports)
-  }
-}
-
-/***/ }),
-/* 218 */
-/* no static exports found */
-/* all exports used */
-/*!*********************************************************************************************************************************************************!*\
-  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-3910fcee"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/components/LoginForm.vue ***!
-  \*********************************************************************************************************************************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('f7-page', [_c('f7-navbar', {
-    attrs: {
-      "title": "Dashboard",
-      "back-link": "Back",
-      "sliding": ""
-    }
-  })], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-3910fcee", module.exports)
-  }
-}
-
-/***/ }),
-/* 219 */
-/* no static exports found */
-/* all exports used */
-/*!***********************************************************************************************************************************************************************!*\
-  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-ab3dcfda"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/components/Registration/SignupForm.vue ***!
-  \***********************************************************************************************************************************************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('f7-page', [_c('f7-navbar', {
-    attrs: {
-      "title": "Sign Up",
-      "back-link": "Back",
-      "sliding": ""
-    }
-  }), _vm._v(" "), _c('f7-list', [_c('f7-list-item', [_c('f7-label', [_vm._v("E-mail")]), _vm._v(" "), _c('f7-input', {
-    staticClass: "form-control",
-    attrs: {
-      "name": "email",
-      "type": "text",
-      "placeholder": "E-mail Address",
-      "required": "",
-      "autofocus": ""
-    },
-    model: {
-      value: (_vm.credentials.email),
-      callback: function($$v) {
-        _vm.credentials.email = $$v
-      },
-      expression: "credentials.email"
-    }
-  })], 1), _vm._v(" "), _c('f7-list-item', [_c('f7-label', [_vm._v("Password")]), _vm._v(" "), _c('f7-input', {
-    staticClass: "form-control",
-    attrs: {
-      "name": "email",
-      "type": "password",
-      "placeholder": "Password",
-      "required": "",
-      "autofocus": ""
-    },
-    model: {
-      value: (_vm.credentials.password),
-      callback: function($$v) {
-        _vm.credentials.password = $$v
-      },
-      expression: "credentials.password"
-    }
-  })], 1), _vm._v(" "), _c('f7-list', [_c('f7-list-button', {
-    attrs: {
-      "title": "Create Account"
-    },
-    on: {
-      "click": _vm.submit
-    }
-  })], 1)], 1)], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-ab3dcfda", module.exports)
-  }
-}
-
-/***/ }),
-/* 220 */
-/* no static exports found */
-/* all exports used */
-/*!************************************************************************************************************************************************************!*\
-  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-e31fadb0"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/components/Registration.vue ***!
-  \************************************************************************************************************************************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return (!_vm.validRegistrationCode) ? _c('code-form') : _c('signup-form')
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-e31fadb0", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-8c232b6e", module.exports)
   }
 }
 
