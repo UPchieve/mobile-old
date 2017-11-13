@@ -35,6 +35,7 @@ socket.on('drawing', function(data) {
 });
 ```
 After changing:
+```
 socket.on('drawing', function(data) {
 
   # new code at the beginning
@@ -46,6 +47,7 @@ socket.on('drawing', function(data) {
   if (!data || !data.sessionId) return;
   socket.broadcast.to(data.sessionId).emit('draw');
 });
+```
 
 The changes made in the example above will make the server work for both the web client and the iOS client.
 
