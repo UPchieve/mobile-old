@@ -1,5 +1,5 @@
 //
-//  ChatMessageTableViewCell.swift
+//  ChatMessageOutgoingImageTableViewCell.swift
 //  UPchieve
 //
 //  Created by Zuoyuan Huang on 1/25/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatMessageTableViewCell: UITableViewCell {
+class ChatMessageOutgoingImageTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

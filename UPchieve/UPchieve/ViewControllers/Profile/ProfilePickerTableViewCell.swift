@@ -1,14 +1,14 @@
 //
-//  ChatMessageTableViewCell.swift
+//  ProfilePickerTableViewCell.swift
 //  UPchieve
 //
-//  Created by Zuoyuan Huang on 1/25/18.
+//  Created by Zuoyuan Huang on 1/26/18.
 //  Copyright © 2018 Zuoyuan Huang. All rights reserved.
 //
 
 import UIKit
 
-class ChatMessageTableViewCell: UITableViewCell {
+class ProfilePickerTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
