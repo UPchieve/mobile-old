@@ -81,11 +81,11 @@ class SessionService: NSObject {
         return nil
     }
     
-    static func listenNewMessage(handler: @escaping (UPchieveChatMessage?) -> Void) {
+    static func listenNewMessage(currentUser: UPchieveUser?, handler: @escaping (UPchieveChatMessage?) -> Void) {
         NetworkService.socket.on("messageSend") {
             (data, ack) in
             let jsonData = JSON(data[0])
-            handler(parseChatMessage(withData: jsonData))
+            handler(parseChatMessage(currentUser, withData: jsonData))
         }
     }
     
@@ -94,12 +94,16 @@ class SessionService: NSObject {
         NetworkService.socket.emit("message", data.rawString(String.Encoding.utf8, options: [])!)
     }
     
-    private static func parseChatMessage(withData jsonData: JSON) -> UPchieveChatMessage? {
+    private static func parseChatMessage(_ currentUser: UPchieveUser?, withData jsonData: JSON) -> UPchieveChatMessage? {
         let content = jsonData["contents"].string
         let firstname = jsonData["name"].string
         let time = jsonData["time"].string
         if let content = content {
-            return UPchieveChatMessage(fromUser: firstname ?? "", time: time ?? "", content: content, outgoing: false)
+            var outgoing = false
+            if firstname == currentUser?.firstname {
+                outgoing = true
+            }
+            return UPchieveChatMessage(fromUser: firstname ?? "", time: time ?? "", content: content, outgoing: outgoing, isImage: false, image: nil)
         }
         return nil
     }

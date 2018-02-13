@@ -8,10 +8,15 @@
 
 import UIKit
 
-class ProfileFullNameTableViewCell: UITableViewCell {
-
+class ProfileFullNameTableViewCell: ProfileTableViewCell, UITextFieldDelegate {
+    
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
         // Initialization code
     }
 
@@ -19,6 +24,23 @@ class ProfileFullNameTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if cellData?.type == .name {
+            let nameCellData = cellData as! ProfileCellNameData
+            if textField === firstNameTextField {
+                nameCellData.firstname = firstNameTextField.text!
+            } else {
+                nameCellData.lastname = lastNameTextField.text!
+            }
+        }
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
     }
 
 }

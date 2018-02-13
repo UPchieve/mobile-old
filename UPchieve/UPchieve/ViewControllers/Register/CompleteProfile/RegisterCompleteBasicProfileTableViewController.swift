@@ -8,12 +8,15 @@
 
 import UIKit
 
-class RegisterCompleteProfileTableViewController: ProfileBasicTableViewController {
+class RegisterCompleteBasicProfileTableViewController: ProfileBasicTableViewController {
+    
+    var currentUser: UPchieveUser?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        cellData = loadData()
-
+        let dataModel = CompleteProfileModel()
+        currentUser = UPchieveUser(id: "")
+        cellData = dataModel.loadBasicProfileData(currentUser: currentUser)
         // Do any additional setup after loading the view.
     }
 
@@ -22,15 +25,14 @@ class RegisterCompleteProfileTableViewController: ProfileBasicTableViewControlle
         // Dispose of any resources that can be recreated.
     }
     
-    func loadData() -> [ProfileCellData] {
-        var data = [ProfileCellData]()
-        data.append(ProfileCellData(type: .tab, title: ""))
-        data.append(ProfileCellNameData(firstname: "", lastname: ""))
-        data.append(ProfileCellData(type: .subtitledTextfield, title: "Your birthday", subtitle: "MM/DD/YYYY", input: ""))
-        data.append(ProfileCellData(type: .picker, title: "Your gender", pickerItems: ["Male", "Female", "Other"], input: "- Select gender -"))
-        data.append(ProfileCellData(type: .picker, title: "Your ethnicity", pickerItems: ["Hispanic or Latino", "White", "Black / African American", "American Indian / Alaskan Native", "Asian"], input: "- Select ethnicity -"))
-        data.append(ProfileCellData(type: .picker, title: "Do you identify with any of the following minority groups?", pickerItems: ["LGBTQ", "Learning disabilities", "Other disabilities", "Immigrant", "Homeless", "Free or reduced price lunch", "Low-income", "Single-parent household", "NYCHA (public housing) resident"], input: "- Select minority groups -"))
-        return data
+    @IBAction func nextButtonClicked(_ sender: Any) {
+        for data in cellData {
+            data.updateInputData()
+        }
+        let destination = storyboard?.instantiateViewController(withIdentifier: "registerProfile_2") as! RegisterCompleteAcademicProfileTableViewController
+        destination.currentUser = currentUser
+        self.navigationController?.pushViewController(destination, animated: true)
+        print(currentUser)
     }
 
     /*

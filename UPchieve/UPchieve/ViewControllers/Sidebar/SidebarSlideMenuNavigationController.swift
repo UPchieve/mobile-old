@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import SideMenu
 
 class SidebarSlideMenuNavigationController: UISideMenuNavigationController {
+    
+    var currentUser: UPchieveUser?
+    var sourceViewController: SidebarViewControllerSource?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +24,6 @@ class SidebarSlideMenuNavigationController: UISideMenuNavigationController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation

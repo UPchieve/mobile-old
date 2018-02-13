@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileTagTableViewCell: UITableViewCell {
+class ProfileTagTableViewCell: ProfileTableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

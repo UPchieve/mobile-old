@@ -7,9 +7,11 @@
 //
 
 import UIKit
-import UPchieveServerAccessor
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
+    
+    var userModel: UserModel?
+    var registrationCodeVerified = false
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -17,7 +19,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: false)
-
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
         // Do any additional setup after loading the view.
     }
 
@@ -26,25 +29,31 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
+    }
+    
     @IBAction func loginButtonClicked(_ sender: Any) {
+        userModel = UserModel()
         let errorHandler: (() -> Void) = {
             self.updateUIAsync {
                 self.showAlert(withTitle: "Error", message: "Login Failed")
             }
         }
-        AuthService.login(withEmail: emailTextField.text!, password: passwordTextField.text!, onError: errorHandler) {
-            (data) in
-            let user = UserService.parseUser(withData: data)
-            LocalCache.setUserAuthenticated(true)
+        self.userModel?.login(email: emailTextField.text!, password: passwordTextField.text!, onError: errorHandler) {
             self.updateUIAsync {
-                if user == nil {
+                if self.userModel?.user == nil {
                     self.showAlert(withTitle: "Error", message: "Could not load user profile")
                 } else {
-                    if user!.isVolunteer {
+                    if self.userModel!.user!.isVolunteer {
                         self.showAlert(withTitle: "Sorry", message: "Volunteers are not supported by current version of UPchieve. We apologize for the convenience. Please use web version instead. ")
+                    } else if !(self.userModel!.user!.verified) {
+                        let destination = self.storyboard?.instantiateViewController(withIdentifier: "verify_email")
+                        self.navigationController?.pushViewController(destination!, animated: false)
                     } else {
                         let destination = self.storyboard?.instantiateViewController(withIdentifier: "dashboard") as! DashboardViewController
-                        destination.currentUser = user
+                        destination.currentUser = self.userModel
                         self.navigationController?.pushViewController(destination, animated: true)
                     }
                 }
@@ -52,6 +61,16 @@ class LoginViewController: UIViewController {
         }
     }
 
+    @IBAction func registerButtonClicked(_ sender: Any) {
+        if registrationCodeVerified {
+            let destination = self.storyboard?.instantiateViewController(withIdentifier: "register_1") as! RegisterInfoViewController
+            self.navigationController?.pushViewController(destination, animated: false)
+        } else {
+            let destination = self.storyboard?.instantiateViewController(withIdentifier: "register_0") as! RegisterCodeViewController
+            self.navigationController?.pushViewController(destination, animated: false)
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

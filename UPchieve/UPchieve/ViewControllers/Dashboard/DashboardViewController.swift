@@ -7,88 +7,149 @@
 //
 
 import UIKit
+import SideMenu
 
-class DashboardViewController: UIViewController {
+class DashboardViewController: UIViewController, SidebarViewControllerSource {
     
-    var currentUser: UPchieveUser?
-
-    @IBOutlet weak var welcomeLabel: UILabel!
+    var currentUser: UserModel?
+    var bottomViewController: DashboardBottomContainerViewController?
+    var topViewController: DashboardTopContainerViewController?
+    var menuLeftNavigationController: SidebarSlideMenuNavigationController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.setHidesBackButton(true, animated: false)
+        configureViewElements()
         if currentUser == nil {
-            loadUserDataFromServer {
-                self.updateUIAsync {
-                    self.welcomeLabel.text = "Welcome, " + self.currentUser!.firstname!
-                }
-            }
+            currentUser = UserModel()
+            loadUserDataFromServer()
         } else {
-            welcomeLabel.text = "Welcome, " + currentUser!.firstname!
+            self.updateUser()
         }
         // Do any additional setup after loading the view.
+    }
+    
+    func configureViewElements() {
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "sideMenuNavigationController") as? SidebarSlideMenuNavigationController
+        SideMenuManager.menuLeftNavigationController = menuLeftNavigationController
+        SideMenuManager.menuFadeStatusBar = false
+        menuLeftNavigationController?.sourceViewController = self
+        let sidebarMenuButton = UIBarButtonItem(title: "Sidebar", style: .plain, target: self, action: #selector(sidebarButtonClicked))
+        self.navigationItem.setLeftBarButton(sidebarMenuButton, animated: false)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    @IBAction func getHelpButtonClicked(_ sender: Any) {
-        SessionService.newSession(type: SessionType.math, user: currentUser!) {
-            (data) in
-            let session = SessionService.parseSession(withData: data)
+    
+    func sidebarButtonClicked() {
+        present(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
+    }
+    
+    func updateUser() {
+        self.updateUIAsync {
+            if let firstname = self.currentUser?.user?.firstname {
+                self.topViewController?.updateWelcomeLabel("Welcome, \n" + firstname)
+            } else {
+                self.topViewController?.updateWelcomeLabel("Welcome, \nStudent")
+            }
+        }
+        bottomViewController?.updateUser(self.currentUser!)
+        menuLeftNavigationController?.currentUser = self.currentUser?.user
+    }
+    
+    func loadUserDataFromServer() {
+        showLoadingHUD()
+        currentUser?.loadUser {
+            if self.currentUser == nil {
+                self.updateUIAsync {
+                    self.showAlert(withTitle: "Error", message: "Cannot load user data")
+                    let destination = self.storyboard?.instantiateViewController(withIdentifier: "login") as! LoginViewController
+                    AuthService.logout(onError: {
+                        self.updateUIAsync {
+                            self.navigationController?.pushViewController(destination, animated: true)
+                        }
+                    }) {
+                        self.updateUIAsync {
+                            self.navigationController?.pushViewController(destination, animated: true)
+                        }
+                    }
+                }
+                return
+            }
             self.updateUIAsync {
-                if session == nil {
-                    self.showAlert(withTitle: "Error", message: "Error occurred while trying to establish new session")
+                self.hideHUD()
+                if self.currentUser!.user!.verified {
+                    self.updateUser()
+                    self.hideHUD()
                 } else {
-                    let destination = self.storyboard?.instantiateViewController(withIdentifier: "session") as! SessionViewController
-                    destination.loadSession(session: session)
-                    destination.currentUser = self.currentUser
-                    self.navigationController?.pushViewController(destination, animated: true)
+                    let destination = self.storyboard?.instantiateViewController(withIdentifier: "verify_email")
+                    self.navigationController?.pushViewController(destination!, animated: true)
                 }
             }
         }
     }
     
-    @IBAction func logoutButtonClicked(_ sender: Any) {
-        let errorHandler: (() -> Void) = {
-            self.updateUIAsync {
-                self.showAlert(withTitle: "Error", message: "Cannot logout at this time")
-            }
-        }
-        AuthService.logout(onError: errorHandler) {
-            self.updateUIAsync {
-                let destination = self.storyboard?.instantiateViewController(withIdentifier: "login") as! LoginViewController
-                self.navigationController?.pushViewController(destination, animated: true)
-            }
-            
+    func handleSidebarAction(action: SidebarAction) {
+        if action == SidebarAction.dashboard {
+            dismiss(animated: true, completion: nil)
         }
     }
     
-    func loadUserDataFromServer(onSuccess: @escaping () -> Void) {
-        NetworkService.restoreCookies()
-        let errorHandler: (() -> Void) = {
-            self.updateUIAsync {
-                self.showAlert(withTitle: "Error", message: "Cannot load user data")
-            }
-        }
-        AuthService.getUser(onError: errorHandler) {
-            (data) in
-            print("User loaded successfully")
-            self.currentUser = UserService.parseUser(withData: data)
-            onSuccess()
-        }
-    }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "dashboardBottomContainerSegue" {
+            bottomViewController = segue.destination as? DashboardBottomContainerViewController
+        } else if segue.identifier == "dashboardTopContainerSegue" {
+            topViewController = segue.destination as? DashboardTopContainerViewController
+        }
     }
-    */
+    
+}
 
+class DashboardTopContainerViewController: UIViewController {
+    
+    @IBOutlet weak var welcomeLabel: UILabel!
+    
+    func updateWelcomeLabel(_ text: String) {
+        welcomeLabel.text = text
+    }
+    
+}
+
+class DashboardBottomContainerViewController: UIViewController {
+    
+    var getHelpViewController: DashboardGetHelpContainerViewController?
+    
+    func updateUser(_ user: UserModel) {
+        getHelpViewController?.currentUser = user
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "dashboardGetHelpContainerSegue" {
+            getHelpViewController = segue.destination as? DashboardGetHelpContainerViewController
+        }
+    }
+    
+}
+
+class DashboardGetHelpContainerViewController: UIViewController {
+    
+    var currentUser: UserModel?
+    
+    @IBAction func getHelpButtonClicked(_ sender: Any) {
+        let destination = self.storyboard?.instantiateViewController(withIdentifier: "selectTopic") as! SelectTopicViewController
+        destination.currentUser = self.currentUser
+        self.navigationController?.pushViewController(destination, animated: true)
+    }
+    
 }

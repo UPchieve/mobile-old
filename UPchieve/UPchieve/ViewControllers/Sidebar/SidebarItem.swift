@@ -8,6 +8,9 @@
 
 import UIKit
 
-class SidebarItem: NSObject {
-
+struct SidebarItem {
+    
+    let title: String
+    let action: () -> Void
+    
 }

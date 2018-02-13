@@ -9,9 +9,14 @@
 import UIKit
 
 class ProfileTableViewCell: UITableViewCell {
+    
+    var cellData: ProfileCellData?
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        let whiteView = UIView()
+        whiteView.backgroundColor = UIColor.clear
+        self.selectedBackgroundView = whiteView
         // Initialization code
     }
 
@@ -19,6 +24,10 @@ class ProfileTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func configure() {
+        
     }
 
 }

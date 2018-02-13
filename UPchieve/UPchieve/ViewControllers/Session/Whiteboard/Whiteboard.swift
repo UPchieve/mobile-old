@@ -19,15 +19,19 @@ class Whiteboard: UIImageView {
     var serverBrush: DrawingTool?
     var drawedImage: UIImage?
     
+    var syncEnabled = false
+    
     var currentSession: UPchieveSession?
     var currentStatus: WhiteboardStatus!
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let brush = userBrush {
             let point = touches.first!.location(in: self)
-            SessionService.sendWhiteboardAction(startDrawingIn: currentSession!)
-            SessionService.sendWhiteboardAction(saveImageIn: currentSession!)
-            SessionService.sendWhiteboardAction(startAt: point, color: brush.color, toSession: currentSession!)
+            if syncEnabled {
+                SessionService.sendWhiteboardAction(startDrawingIn: currentSession!)
+                SessionService.sendWhiteboardAction(saveImageIn: currentSession!)
+                SessionService.sendWhiteboardAction(startAt: point, color: brush.color, toSession: currentSession!)
+            }
             drawBegan(at: point, with: brush)
         }
     }
@@ -35,7 +39,9 @@ class Whiteboard: UIImageView {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let brush = userBrush {
             let point = touches.first!.location(in: self)
-            SessionService.sendWhiteboardAction(drag: point, color: brush.color, toSession: currentSession!)
+            if syncEnabled {
+                SessionService.sendWhiteboardAction(drag: point, color: brush.color, toSession: currentSession!)
+            }
             drawMoved(at: point, with: brush)
         }
     }
@@ -43,9 +49,11 @@ class Whiteboard: UIImageView {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let brush = userBrush {
             let point = touches.first!.location(in: self)
-            SessionService.sendWhiteboardAction(endAt: point, color: brush.color, toSession: currentSession!)
-            SessionService.sendWhiteboardAction(saveImageIn: currentSession!)
-            SessionService.sendWhiteboardAction(endDrawingIn: currentSession!)
+            if syncEnabled {
+                SessionService.sendWhiteboardAction(endAt: point, color: brush.color, toSession: currentSession!)
+                SessionService.sendWhiteboardAction(saveImageIn: currentSession!)
+                SessionService.sendWhiteboardAction(endDrawingIn: currentSession!)
+            }
             drawEnded(at: point, with: brush)
         }
     }
@@ -134,14 +142,18 @@ class Whiteboard: UIImageView {
 
     func switchBrush(_ brush: DrawingTool) {
         userBrush = brush
-        SessionService.sendWhiteboardAction(saveImageIn: currentSession!)
-        SessionService.sendWhiteboardAction(color: brush.color, toSession: currentSession!)
-        SessionService.sendWhiteboardAction(strokeWidth: brush.width, toSession: currentSession!)
+        if syncEnabled {
+            SessionService.sendWhiteboardAction(saveImageIn: currentSession!)
+            SessionService.sendWhiteboardAction(color: brush.color, toSession: currentSession!)
+            SessionService.sendWhiteboardAction(strokeWidth: brush.width, toSession: currentSession!)
+        }
     }
     
     func switchColor(color: UIColor, brush: DrawingTool) {
         if brush.allowColorChange {
-            SessionService.sendWhiteboardAction(color: color, toSession: currentSession!)
+            if syncEnabled {
+                SessionService.sendWhiteboardAction(color: color, toSession: currentSession!)
+            }
             brush.color = color
         }
     }
@@ -155,7 +167,9 @@ class Whiteboard: UIImageView {
     }
     
     func clear() {
-        SessionService.sendWhiteboardAction(clearSession: currentSession!)
+        if syncEnabled {
+            SessionService.sendWhiteboardAction(clearSession: currentSession!)
+        }
         newDrawingPad()
     }
 

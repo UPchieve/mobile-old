@@ -8,6 +8,7 @@
 
 import UIKit
 import SocketIO
+import LxFTPRequest
 
 class NetworkService: NSObject {
     
@@ -95,11 +96,52 @@ class NetworkService: NSObject {
         }
     }
     
+    static func checkRegistrationCode(code: String, onCompletion completion: @escaping (Int, Data?) -> Void) {
+        let dict = ["code": code]
+        sendPostRequest(toURL: ServerConfiguration.AUTH_ROOT + "/register/check", withData: JSON(dict).rawString(String.Encoding.utf8, options: [])!) {
+            (statusCode, data) in
+            completion(statusCode, data)
+        }
+    }
+    
+    static func performRegister(withData data: JSON, onCompletion completion: @escaping (Int, Data?) -> Void) {
+        print(data.rawString(String.Encoding.utf8, options: [])!)
+        sendPostRequest(toURL: ServerConfiguration.AUTH_ROOT + "/register", withData: data.rawString(String.Encoding.utf8, options: [])!) {
+            (statusCode, data) in
+            completion(statusCode, data)
+        }
+    }
+    
     static func newSession(withData data: JSON, onCompletion completion: @escaping (Int, Data?) -> Void) {
         sendPostRequest(toURL: ServerConfiguration.API_ROOT + "/session/new", withData: data.rawString(String.Encoding.utf8, options: [])) {
             (statusCode, data) in
             completion(statusCode, data)
         }
+    }
+    
+    static func conformVerification(withData data: JSON, onCompletion completion: @escaping (Int, Data?) -> Void) {
+        print(data.rawString(String.Encoding.utf8, options: [])!)
+        sendPostRequest(toURL: ServerConfiguration.API_ROOT + "/verify/confirm", withData: data.rawString(String.Encoding.utf8, options: [])!) {
+            (statusCode, data) in
+            completion(statusCode, data)
+        }
+    }
+    
+    static func uploadToFTP(filePath: String, filename: String, onSuccess success: @escaping () -> Void) {
+        let uploadUrl = URL(string: "ftp://" + ServerConfiguration.FTP_ROOT + "/" + filename)
+        let request = LxFTPRequest.upload()
+        request?.serverURL = uploadUrl
+        request?.localFileURL = URL(fileURLWithPath: filePath)
+        request?.username = ServerConfiguration.FTP_USER
+        request?.password = ServerConfiguration.FTP_PASSWORD
+        request?.successAction = { (resultClass, result) in
+            success()
+        }
+        request?.failAction = { (domain, error, errorMessage) in
+        }
+        request?.progressAction = {(_ totalSize: Int, _ finishedSize: Int, _ finishedPercent: CGFloat) -> Void in
+        }
+        request?.start()
     }
 
 }

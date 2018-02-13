@@ -15,5 +15,9 @@ class ServerConfiguration: NSObject {
     
     static let AUTH_ROOT = SERVER_ROOT + "/auth"
     static let API_ROOT = SERVER_ROOT + "/api"
+    
+    static let FTP_ROOT = "104.236.192.128/files"
+    static let FTP_USER = "dhuang"
+    static let FTP_PASSWORD = "Welcome$1"
 
 }

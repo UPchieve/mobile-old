@@ -12,6 +12,9 @@ class WhiteboardViewController: UIViewController {
     
     var currentSession: UPchieveSession?
     var userBrushes = [WhiteboardPencil(), WhiteboardEraser()]
+    var imageSent = 0
+    
+    var sessionViewController: SessionViewController?
     
     @IBOutlet weak var whiteboard: Whiteboard!
     @IBOutlet weak var colorOne: UIButton!
@@ -36,6 +39,10 @@ class WhiteboardViewController: UIViewController {
         whiteboard.userBrush = userBrushes[0]
         whiteboard.serverBrush = WhiteboardPencil()
         whiteboard.currentSession = currentSession
+    }
+    
+    func enableSync() {
+        self.whiteboard.syncEnabled = true
         whiteboard.listen()
     }
     
@@ -74,6 +81,28 @@ class WhiteboardViewController: UIViewController {
     
     @IBAction func clearButtonClicked(_ sender: Any) {
         whiteboard.clear()
+    }
+    
+    @IBAction func sendButtonClicked(_ sender: Any) {
+        let filename = currentSession!.sessionId + "_" + String(imageSent) + ".jpg"
+        imageSent += 1
+        showLoadingHUD()
+        if let image = whiteboard.drawedImage {
+            guard let data = UIImageJPEGRepresentation(image, 0.8) else {
+                return
+            }
+            let fileManager = FileManager.default
+            let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(filename)
+            fileManager.createFile(atPath: paths as String, contents: data, attributes: nil)
+            NetworkService.uploadToFTP(filePath: paths, filename: filename) {
+                self.updateUIAsync {
+                    self.sessionViewController?.didSentWhiteboardImage(image: image)
+                    self.navigationController?.popViewController(animated: true)
+                    self.whiteboard.clear()
+                    self.hideHUD()
+                }
+            }
+        }
     }
     
     /*

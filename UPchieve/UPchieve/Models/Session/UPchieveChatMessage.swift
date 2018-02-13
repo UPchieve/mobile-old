@@ -16,5 +16,8 @@ struct UPchieveChatMessage {
     var content: String
     
     var outgoing: Bool
+    var isImage: Bool
+    
+    var image: UIImage?
 
 }

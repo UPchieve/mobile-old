@@ -8,10 +8,15 @@
 
 import UIKit
 
-class ProfileSubtitledTextFieldTableViewCell: UITableViewCell {
+class ProfileSubtitledTextFieldTableViewCell: ProfileTableViewCell, UITextFieldDelegate {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var inputTextField: UITextField!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        inputTextField.delegate = self
         // Initialization code
     }
 
@@ -19,6 +24,24 @@ class ProfileSubtitledTextFieldTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    override func configure() {
+        titleLabel.text = cellData?.title
+        titleLabel.sizeToFit()
+        inputTextField.text = cellData?.input
+        subtitleLabel.text = cellData?.subtitle
+        subtitleLabel.sizeToFit()
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        cellData?.input = textField.text!
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
     }
 
 }

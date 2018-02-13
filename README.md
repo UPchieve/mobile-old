@@ -51,10 +51,6 @@ socket.on('drawing', function(data) {
 
 The changes made in the example above will make the server work for both the web client and the iOS client.
 
-## Managing Storyboard
-
-Since sometimes changes in storyboard file will cause issues in Github, I recommend manage storyboard file seperately. 
-
 ## Server Configurations
 
 All the server configurations, including the address of the server, are stored in UPchieve/UPchieve/ServerAccess/ServerConfiguration.swift

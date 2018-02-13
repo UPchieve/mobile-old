@@ -8,19 +8,22 @@
 
 import UIKit
 
-class RegisterCompleteAcademicProfileTableViewController: UIViewController {
+class RegisterCompleteAcademicProfileTableViewController: ProfileBasicTableViewController {
+    
+    var currentUser: UPchieveUser?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let dataModel = CompleteProfileModel()
+        cellData = dataModel.loadAcademicProfileData(currentUser: currentUser)
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
 
     /*
     // MARK: - Navigation

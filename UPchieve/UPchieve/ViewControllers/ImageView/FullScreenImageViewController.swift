@@ -10,6 +10,8 @@ import UIKit
 
 class FullScreenImageViewController: UIViewController {
 
+    @IBOutlet weak var imageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +23,10 @@ class FullScreenImageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    func setImage(image: UIImage?) {
+        self.imageView.image = image
+    }
+    
     /*
     // MARK: - Navigation
 

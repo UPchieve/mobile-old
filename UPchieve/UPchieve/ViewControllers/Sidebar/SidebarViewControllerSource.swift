@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+enum SidebarAction {
+    
+    case dashboard
+    
+}
+
+protocol SidebarViewControllerSource {
+    
+    func handleSidebarAction(action: SidebarAction)
+    
+}

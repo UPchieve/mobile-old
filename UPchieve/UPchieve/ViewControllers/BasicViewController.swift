@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 extension UIViewController {
     
@@ -22,14 +23,14 @@ extension UIViewController {
         }
     }
     
-}
-
-extension UIImageView {
+    func showLoadingHUD() {
+        let loadingHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
+        loadingHUD.mode = MBProgressHUDMode.indeterminate
+        loadingHUD.label.text = "Uploading..."
+    }
     
-    func updateUIAsync(withFunction function: @escaping () -> Void) {
-        DispatchQueue.main.async {
-            function()
-        }
+    func hideHUD() {
+        MBProgressHUD.hide(for: self.view, animated: false)
     }
     
 }
