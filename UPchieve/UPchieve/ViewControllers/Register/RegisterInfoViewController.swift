@@ -29,27 +29,32 @@ class RegisterInfoViewController: UIViewController {
     }
 
     @IBAction func loginButtonClicked(_ sender: Any) {
-        let destination = self.storyboard?.instantiateViewController(withIdentifier: "login") as! LoginViewController
-        destination.registrationCodeVerified = true
-        self.navigationController?.pushViewController(destination, animated: false)
+//        let destination = self.storyboard?.instantiateViewController(withIdentifier: "login") as! LoginViewController
+//        destination.registrationCodeVerified = true
+//        self.navigationController?.pushViewController(destination, animated: false)
+        
+        self.navigationController?.popViewController(animated: false)
     }
     
     @IBAction func nextButtonClicked(_ sender: Any) {
         RegistrationService.setRegistrationInfo(email: emailTextField.text!, password: passwordTextField.text!)
-        RegistrationService.register(
-            onError: {
-                self.updateUIAsync {
-                    let alert = UIAlertController(title: "Error", message: "Unable to register", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                    self.present(alert, animated: true)
-                }
-            }
-        ) {
-            self.updateUIAsync {
-                let destination = self.storyboard?.instantiateViewController(withIdentifier: "verify_email")
-                self.navigationController?.pushViewController(destination!, animated: false)
-            }
-        }
+        
+        let destination = self.storyboard?.instantiateViewController(withIdentifier: "registerProfile_1")
+        self.navigationController?.pushViewController(destination!, animated: false)
+//        RegistrationService.register(
+//            onError: {
+//                self.updateUIAsync {
+//                    let alert = UIAlertController(title: "Error", message: "Unable to register", preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+//                    self.present(alert, animated: true)
+//                }
+//            }
+//        ) {
+//            self.updateUIAsync {
+//                let destination = self.storyboard?.instantiateViewController(withIdentifier: "verify_email")
+//                self.navigationController?.pushViewController(destination!, animated: false)
+//            }
+//        }
     }
 
 }

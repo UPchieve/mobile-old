@@ -62,13 +62,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func registerButtonClicked(_ sender: Any) {
-        if registrationCodeVerified {
+       
             let destination = self.storyboard?.instantiateViewController(withIdentifier: "register_1") as! RegisterInfoViewController
             self.navigationController?.pushViewController(destination, animated: false)
-        } else {
-            let destination = self.storyboard?.instantiateViewController(withIdentifier: "register_0") as! RegisterCodeViewController
-            self.navigationController?.pushViewController(destination, animated: false)
-        }
+        
+        
     }
     
     /*

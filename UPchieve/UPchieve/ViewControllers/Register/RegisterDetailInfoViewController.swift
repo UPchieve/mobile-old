@@ -8,14 +8,25 @@
 
 import UIKit
 
-class RegisterCodeViewController: UIViewController, UITextFieldDelegate {
+class RegisterDetailInfoViewController: UIViewController, UITextFieldDelegate{
+    
+    
+   
 
-    @IBOutlet weak var registrationCodeTextField: UITextField!
+    @IBOutlet weak var firstName: UITextField!
+    @IBOutlet weak var lastName: UITextField!
+    @IBOutlet weak var schoolName: UITextField!
+    @IBOutlet weak var hearAboutUS:UITextField!
+    @IBOutlet weak var hearAboutUsPickerView: UIPickerView!
+    
+    var hearAboutUsOptions = ["facebook","website","friend","other"]
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: false)
-        registrationCodeTextField.delegate = self
+        configureDelegateAndView()
         // Do any additional setup after loading the view.
     }
 
@@ -24,10 +35,48 @@ class RegisterCodeViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    func configureDelegateAndView(){
+        firstName.delegate = self
+        lastName.delegate = self
+        schoolName.delegate = self
+        hearAboutUS.delegate = self
+        hearAboutUsPickerView.dataSource = self
+        hearAboutUsPickerView.delegate = self
+        
+        hearAboutUsPickerView.isOpaque = false
+        hearAboutUsPickerView.isHidden = true
+        
+        hearAboutUS.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for:.editingChanged)
+       // hearAboutUS.addTarget(self, action: #selector(hearAboutUSClicked), for: .touchUpInside)
+        
+        
+        
+    }
+    
     @IBAction func loginButtonClicked(_ sender: Any) {
         let destination = self.storyboard?.instantiateViewController(withIdentifier: "login") as! LoginViewController
         self.navigationController?.pushViewController(destination, animated: false)
     }
+    
+    
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == hearAboutUS{
+            
+          self.hearAboutUsPickerView.isHidden = false
+            
+        }
+    }
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        
+        if textField == hearAboutUS{
+            
+            self.hearAboutUsPickerView.isHidden = false
+            
+        }
+    }
+
     
     func getRegistrationCode() {
         UIApplication.shared.open(URL(string: "https://upchieve.org/students")!, options: [:], completionHandler: nil)
@@ -38,12 +87,17 @@ class RegisterCodeViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
+    
+    
+    
     @IBAction func noRegistrationCodeClicked(_ sender: Any) {
         getRegistrationCode()
     }
     
+    
+    
     @IBAction func nextButtonClicked(_ sender: Any) {
-        let code = registrationCodeTextField.text!
+        let code = firstName.text!
         RegistrationService.checkRegistrationCode(code: code) {
             result in
             if result {
@@ -77,3 +131,29 @@ class RegisterCodeViewController: UIViewController, UITextFieldDelegate {
     */
 
 }
+
+extension RegisterDetailInfoViewController:UIPickerViewDataSource,UIPickerViewDelegate{
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return hearAboutUsOptions.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return hearAboutUsOptions[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        let selectedText = self.hearAboutUsOptions[row]
+        
+        self.hearAboutUS.text = selectedText
+        pickerView.isHidden = true
+    }
+    
+    
+}
+

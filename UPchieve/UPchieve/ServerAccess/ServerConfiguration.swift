@@ -10,8 +10,8 @@ import UIKit
 
 class ServerConfiguration: NSObject {
     
-    static let SERVER_ROOT = "http://localhost:3000"
-    static let SOCKET_ADDRESS = "http://localhost:3001"
+    static let SERVER_ROOT = "https://app.upchieve.org"
+    static let SOCKET_ADDRESS = "142.93.89.114:3001"
     
     static let AUTH_ROOT = SERVER_ROOT + "/auth"
     static let API_ROOT = SERVER_ROOT + "/api"
