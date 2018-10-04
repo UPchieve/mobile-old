@@ -72,7 +72,8 @@ class FooterView: UIView {
         
         self.webViewController.url = "https://app.upchieve.org/#/contact"
         webViewController.changeURL()
-        parentViewController.navigationController?.present(self.webViewController, animated: false)
+        parentViewController.navigationController?.pushViewController(self.webViewController, animated: false)
+        
         
     }
 
@@ -83,7 +84,7 @@ class FooterView: UIView {
         
        self.webViewController.url = "https://app.upchieve.org/#/legal"
         webViewController.changeURL()
-        parentViewController.navigationController?.present(self.webViewController, animated: false)
+        parentViewController.navigationController?.pushViewController(self.webViewController, animated: false)
         
     }
 }
@@ -91,6 +92,7 @@ class FooterView: UIView {
 
 extension UIView {
     var parentViewController: UIViewController {
+        
         var parentResponder: UIResponder? = self
         while parentResponder != nil {
             parentResponder = parentResponder!.next
@@ -100,4 +102,5 @@ extension UIView {
         }
         return UIViewController()
 }
+    
 }

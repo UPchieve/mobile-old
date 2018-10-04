@@ -34,6 +34,17 @@ class AuthService: NSObject {
         }
     }
     
+    
+    static func checkcred(data: JSON, onError: @escaping () -> Void, onSuccess: @escaping (Data) -> Void) {
+        NetworkService.checkcred(withData: data) {
+            (statusCode, data) in
+            if statusCode == 200 {
+                onSuccess(data!)
+            } else {
+                onError()
+            }
+        }
+    }
     static func register(data: JSON, onError: @escaping () -> Void, onSuccess: @escaping () -> Void) {
         NetworkService.performRegister(withData: data) {
             (statusCode, data) in

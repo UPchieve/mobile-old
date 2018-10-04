@@ -10,7 +10,7 @@ import UIKit
 
 class RegistrationService: NSObject {
     
-    static var currentRegistration: UPchieveRegistrationData?
+    static var currentRegistration: UPchieveRegistrationData = UPchieveRegistrationData()
     
     static func checkRegistrationCode(code: String, onCompletion completion: @escaping (Bool) -> Void) {
         NetworkService.checkRegistrationCode(code: code) {
@@ -24,17 +24,30 @@ class RegistrationService: NSObject {
     }
     
     static func register(onError: @escaping () -> Void, onSuccess: @escaping () -> Void) {
-        AuthService.register(data: (currentRegistration?.toJSON())!, onError: onError, onSuccess: onSuccess)
+        AuthService.register(data: (currentRegistration.toJSON()), onError: onError, onSuccess: onSuccess)
+    }
+    
+    static func checkcred(onError: @escaping () -> Void, onSuccess: @escaping (Data) -> Void){
+        AuthService.checkcred(data: (currentRegistration.toJSON()), onError: onError, onSuccess: onSuccess)
+        
+    }
+    
+    
+    static func registerDetails(onError: @escaping () -> Void, onSuccess:@escaping () -> Void){
+        
+        AuthService.register(data: (currentRegistration.toJSON()), onError: onError, onSuccess: onSuccess)
+
+        
     }
     
     static func setRegistrationCode(_ code: String) {
         currentRegistration = UPchieveRegistrationData()
-        currentRegistration?.registrationCode = code
+        currentRegistration.registrationCode = code
     }
     
     static func setRegistrationInfo(email: String, password: String) {
-        currentRegistration?.email = email
-        currentRegistration?.password = password
+        currentRegistration.email = email
+        currentRegistration.password = password
     }
 
 }

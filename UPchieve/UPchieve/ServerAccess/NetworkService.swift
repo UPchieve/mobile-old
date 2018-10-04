@@ -112,6 +112,14 @@ class NetworkService: NSObject {
         }
     }
     
+    static func checkcred(withData data: JSON, onCompletion completion: @escaping (Int, Data?) -> Void) {
+        print(data.rawString(String.Encoding.utf8, options: [])!)
+        sendPostRequest(toURL: ServerConfiguration.AUTH_ROOT + "/register/checkcred", withData: data.rawString(String.Encoding.utf8, options: [])!) {
+            (statusCode, data) in
+            completion(statusCode, data)
+        }
+    }
+    
     static func newSession(withData data: JSON, onCompletion completion: @escaping (Int, Data?) -> Void) {
         sendPostRequest(toURL: ServerConfiguration.API_ROOT + "/session/new", withData: data.rawString(String.Encoding.utf8, options: [])) {
             (statusCode, data) in

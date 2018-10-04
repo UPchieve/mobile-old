@@ -56,7 +56,7 @@ class RegisterCheckEmailViewController: UIViewController, UITextFieldDelegate {
     
     func confirmCode(_ code: String) {
         showLoadingHUD()
-        /* OnboardingService.conformVerification(code: code,
+        OnboardingService.conformVerification(code: code,
             onError: {
                 self.updateUIAsync {
                     self.hideHUD()
@@ -69,9 +69,9 @@ class RegisterCheckEmailViewController: UIViewController, UITextFieldDelegate {
                 let destination = self.storyboard?.instantiateViewController(withIdentifier: "registerProfile_1")
                 self.navigationController?.pushViewController(destination!, animated: true)
             }
-        } */
-        let destination = self.storyboard?.instantiateViewController(withIdentifier: "registerProfile_1")
-        self.navigationController?.pushViewController(destination!, animated: true)
+        } 
+        //let destination = self.storyboard?.instantiateViewController(withIdentifier: "registerProfile_1")
+        //self.navigationController?.pushViewController(destination!, animated: true)
     }
 
     /*

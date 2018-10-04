@@ -15,7 +15,10 @@ class RegisterInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.setHidesBackButton(true, animated: false)
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -39,22 +42,56 @@ class RegisterInfoViewController: UIViewController {
     @IBAction func nextButtonClicked(_ sender: Any) {
         RegistrationService.setRegistrationInfo(email: emailTextField.text!, password: passwordTextField.text!)
         
-        let destination = self.storyboard?.instantiateViewController(withIdentifier: "registerProfile_1")
-        self.navigationController?.pushViewController(destination!, animated: false)
-//        RegistrationService.register(
-//            onError: {
-//                self.updateUIAsync {
-//                    let alert = UIAlertController(title: "Error", message: "Unable to register", preferredStyle: .alert)
-//                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-//                    self.present(alert, animated: true)
-//                }
-//            }
-//        ) {
-//            self.updateUIAsync {
-//                let destination = self.storyboard?.instantiateViewController(withIdentifier: "verify_email")
-//                self.navigationController?.pushViewController(destination!, animated: false)
-//            }
-//        }
+    
+        RegistrationService.checkcred(
+            onError: {
+                self.updateUIAsync {
+                    let alert = UIAlertController(title: "Error", message: "Unable to register", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(alert, animated: true)
+                }
+            }
+        ) { (data) in
+            
+            let jsonData = JSON(data)
+            if let err = jsonData["err"].string{
+                self.updateUIAsync {
+                    let alert = UIAlertController(title: "Error", message: err, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(alert, animated: true)
+                }
+            }else if jsonData["checked"].boolValue{
+                
+                    self.updateUIAsync {
+                        let destination = self.storyboard?.instantiateViewController(withIdentifier: "registerProfile_1")
+                        self.navigationController?.pushViewController(destination!, animated: false)
+                    }
+                    
+                }else{
+               self.updateUIAsync {
+                    let alert = UIAlertController(title: "Error", message: "Email already taken", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(alert, animated: true)
+                }
+            }
+        }
     }
 
+}
+
+extension RegisterInfoViewController:UITextFieldDelegate{
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == self.emailTextField{
+            
+            if !(textField.text?.isValidEmail())!{
+                self.updateUIAsync {
+                    let alert = UIAlertController(title: "Error", message: "Email is not valid", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(alert, animated: true)
+                }
+            }
+            
+        }
+    }
 }

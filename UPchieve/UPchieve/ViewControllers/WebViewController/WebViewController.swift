@@ -11,14 +11,19 @@ import WebKit
 class WebViewController: UIViewController, WKUIDelegate {
     
     var webView: WKWebView!
-    var url:String = "https://artsandculture.google.com/partner/the-munch-museum-oslo"
+    var url:String = "https://www.google.com/"
     
+    @IBOutlet weak var doneButton:UIButton!
+  
     override func loadView() {
         super.loadView()
         let webConfiguration = WKWebViewConfiguration()
-        webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        let frame = CGRect(x:0,y:0,width:self.view.frame.size.width,height:self.view.frame.size.height)
+        webView = WKWebView(frame: frame, configuration: webConfiguration)
         webView.uiDelegate = self
-        view = webView
+        //self.view.addSubview(doneButton)
+        self.view.addSubview(webView)
+        //view = webView
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +33,7 @@ class WebViewController: UIViewController, WKUIDelegate {
         webView.load(myRequest)
     }
 
+
     func changeURL(){
         let myURL = URL(string: url)
         let myRequest = URLRequest(url: myURL!)
@@ -36,6 +42,30 @@ class WebViewController: UIViewController, WKUIDelegate {
     
     }
 
+    func webViewDidStartLoad(_ webView: UIWebView)
+    {
+        
+        showLoadingHUD()
+        
+    }
+    func webViewDidFinishLoad(_ webView: UIWebView){
+        
+        hideHUD()
+    }
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error)
+    {
+        
+        self.updateUIAsync {
+            self.hideHUD()
+            self.showAlert(withTitle: "Sorry", message: "We are not able to load the page")
+        }
+        
+    }
+    @IBAction func doneButtonClicked(sender:UIButton){
+        
+        self.navigationController?.dismiss(animated:false, completion: nil)
+        
+    }
 }
     /*
     // MARK: - Navigation

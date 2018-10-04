@@ -10,7 +10,7 @@ import UIKit
 
 class OnboardingService: NSObject {
     
-      func conformVerification(code: String, onError: @escaping () -> Void, onSuccess: @escaping () -> Void) {
+  static    func conformVerification(code: String, onError: @escaping () -> Void, onSuccess: @escaping () -> Void) {
         let data = JSON(["token": code])
         NetworkService.conformVerification(withData: data) {
             (statusCode, data) in
